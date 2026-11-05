@@ -25,7 +25,7 @@ Seed data uses a January 2026 sample accounting period and includes legitimate g
 
 ## Important scope
 
-Local prototype, no login or enforced authorization. Module permissions are configuration only, signatory assignments are not electronic approvals, and all connected users can access the ledger. The ATC view explicitly marks the supplied examples unverified: online BIR retrieval was blocked, so the latest official list and rates have **not** been loaded. See the backend README for validation, data persistence and remaining capabilities required for production.
+Approved-account login, MFA, school-specific storage and Operator/Viewer access checks are implemented. Legacy module preferences do not grant privileges, and signatory assignments remain metadata rather than electronic approvals. Production deployment needs the configured certificate/private-network controls. The ATC view explicitly marks the supplied examples unverified: online BIR retrieval was blocked, so the latest official list and rates have **not** been loaded. See the backend README for validation, data persistence and remaining capabilities required for production.
 
 ## Downloadable sample
 
@@ -38,3 +38,7 @@ From the sibling backend directory run `python3 scripts/start_sample.py`. It bui
 ## Bank List / Income Statement
 
 Bank List includes Bank Information (posting GL selector), bank-specific Bank Reconciliation and Check Setup tabs. Add a bank before entering its reconciliation records or check ranges. Check setup preserves leading zeros and rejects overlapping ranges; it does not issue checks. Income Statement appears in Reports navigation and the report library; select a month and export PDF/DOCX/XLSX. See backend/docs/banking.md for calculations and legacy bank-record handling.
+
+## Authentication / school access
+
+The frontend now starts with approved-account login, local authenticator QR enrollment, MFA/recovery and secure cookie sessions. Antiforgery headers are attached to same-origin mutations. Platform administrators manage schools, invitations, approved workstation certificate fingerprints, roles, expiring read-only support and audits. Operators see their assigned school only; Viewers cannot change records. School identity is registered centrally and displayed from the authenticated session. See backend/docs/school-access-implementation.md. This supersedes the prototype's earlier no-login notes. Production device enforcement needs the configured TLS client-certificate gateway; explicit loopback development mode does not pretend to approve devices.
