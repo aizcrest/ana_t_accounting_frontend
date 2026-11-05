@@ -30,3 +30,11 @@ Local prototype, no login or enforced authorization. Module permissions are conf
 ## Downloadable sample
 
 From the sibling backend directory run `python3 scripts/start_sample.py`. It builds this frontend and serves it from the .NET API at localhost port 5080, backed by PostgreSQL. Requires Docker Compose, Python 3, Node.js 22+ and .NET SDK 10.0.403. See the sample archive README for the test walkthrough.
+
+## Canteen report module
+
+**Canteen Reports** contains quarterly A-1 reports, applicable monthly A-2 reports and supporting registers, transmittals, school profile and GL mappings, supplementary records, and actual submission tracking. Select the reporting month and use the PDF, DOCX or XLSX buttons in the preview. Defaults assume a school-managed non-IU canteen with a bank account; change School settings to match the actual school. Cooperative/laboratory/IU-only reports are conditional. Missing evidence stays marked Draft in both preview and export. Exact official annex layouts have not been independently verified against the PDF; see backend/docs/canteen-reporting.md.
+
+## Bank List / Income Statement
+
+Bank List includes Bank Information (posting GL selector), bank-specific Bank Reconciliation and Check Setup tabs. Add a bank before entering its reconciliation records or check ranges. Check setup preserves leading zeros and rejects overlapping ranges; it does not issue checks. Income Statement appears in Reports navigation and the report library; select a month and export PDF/DOCX/XLSX. See backend/docs/banking.md for calculations and legacy bank-record handling.
